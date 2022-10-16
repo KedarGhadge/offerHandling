@@ -21,6 +21,7 @@
     <Property Name="website" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="location" Relationship="Self.FK__companies__locat__4316F928" FromRole="companies" ToRole="locations" />
     <NavigationProperty Name="tag" Relationship="Self.FK__companies__tagId__4222D4EF" FromRole="companies" ToRole="tags" />
+    <NavigationProperty Name="contactPersons" Relationship="myofferModel.FK__contactPe__compa__48CFD27E" FromRole="company" ToRole="contactPerson" />
   </EntityType>
   <EntityType Name="contactPerson">
     <Key>
@@ -30,6 +31,8 @@
     <Property Name="contactPersonName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="contactNumber" Type="Decimal" Precision="10" Scale="0" />
     <Property Name="isActive" Type="Byte" />
+    <Property Name="companyId" Type="Int32" />
+    <NavigationProperty Name="company" Relationship="myofferModel.FK__contactPe__compa__48CFD27E" FromRole="contactPerson" ToRole="company" />
   </EntityType>
   <EntityType Name="location">
     <Key>
@@ -96,5 +99,21 @@
       <End Role="tags" EntitySet="tags" />
       <End Role="companies" EntitySet="companies" />
     </AssociationSet>
+    <AssociationSet Name="FK__contactPe__compa__48CFD27E" Association="myofferModel.FK__contactPe__compa__48CFD27E">
+      <End Role="company" EntitySet="companies" />
+      <End Role="contactPerson" EntitySet="contactPersons" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK__contactPe__compa__48CFD27E">
+    <End Type="myofferModel.company" Role="company" Multiplicity="0..1" />
+    <End Type="myofferModel.contactPerson" Role="contactPerson" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="company">
+        <PropertyRef Name="companyId" />
+      </Principal>
+      <Dependent Role="contactPerson">
+        <PropertyRef Name="companyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

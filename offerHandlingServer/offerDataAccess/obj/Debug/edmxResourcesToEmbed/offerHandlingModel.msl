@@ -25,6 +25,7 @@
     <EntitySetMapping Name="contactPersons">
       <EntityTypeMapping TypeName="myofferModel.contactPerson">
         <MappingFragment StoreEntitySet="contactPersons">
+          <ScalarProperty Name="companyId" ColumnName="companyId" />
           <ScalarProperty Name="contactPersonId" ColumnName="contactPersonId" />
           <ScalarProperty Name="contactPersonName" ColumnName="contactPersonName" />
           <ScalarProperty Name="contactNumber" ColumnName="contactNumber" />

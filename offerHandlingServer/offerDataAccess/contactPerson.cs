@@ -18,5 +18,8 @@ namespace offerDataAccess
         public string contactPersonName { get; set; }
         public Nullable<decimal> contactNumber { get; set; }
         public Nullable<byte> isActive { get; set; }
+        public Nullable<int> companyId { get; set; }
+    
+        public virtual company company { get; set; }
     }
 }

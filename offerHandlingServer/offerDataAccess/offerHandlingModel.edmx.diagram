@@ -12,6 +12,7 @@
         <EntityTypeShape EntityType="myofferModel.technology" Width="1.5" PointX="5.75" PointY="5.25" IsExpanded="true" />
         <AssociationConnector Association="myofferModel.FK__companies__locat__4316F928" ManuallyRouted="false" />
         <AssociationConnector Association="myofferModel.FK__companies__tagId__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="myofferModel.FK__contactPe__compa__48CFD27E" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

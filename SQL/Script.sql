@@ -45,6 +45,11 @@ CREATE TABLE companies (
 	,isActive TINYINT
 	,website VARCHAR(50)
 	);
+
+	ALTER TABLE contactPersons
+    ADD companyId INTEGER,
+    FOREIGN KEY(companyId) REFERENCES companies(companyId);
+
 	Go
 	insert into tags(tagName,isActive) values('Cancelled', 1);
 	insert into tags(tagName,isActive) values('Scheduled', 1);

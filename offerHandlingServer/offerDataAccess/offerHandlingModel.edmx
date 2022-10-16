@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="myofferModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="myofferModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="companies">
           <Key>
             <PropertyRef Name="companyId" />
@@ -33,6 +33,7 @@
           <Property Name="contactPersonName" Type="varchar" MaxLength="20" />
           <Property Name="contactNumber" Type="decimal" Precision="10" Scale="0" />
           <Property Name="isActive" Type="tinyint" />
+          <Property Name="companyId" Type="int" />
         </EntityType>
         <EntityType Name="locations">
           <Key>
@@ -83,6 +84,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__contactPe__compa__48CFD27E">
+          <End Role="companies" Type="Self.companies" Multiplicity="0..1" />
+          <End Role="contactPersons" Type="Self.contactPersons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="companies">
+              <PropertyRef Name="companyId" />
+            </Principal>
+            <Dependent Role="contactPersons">
+              <PropertyRef Name="companyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="myofferModelStoreContainer">
           <EntitySet Name="companies" EntityType="Self.companies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="contactPersons" EntityType="Self.contactPersons" Schema="dbo" store:Type="Tables" />
@@ -97,9 +110,12 @@
             <End Role="tags" EntitySet="tags" />
             <End Role="companies" EntitySet="companies" />
           </AssociationSet>
+          <AssociationSet Name="FK__contactPe__compa__48CFD27E" Association="Self.FK__contactPe__compa__48CFD27E">
+            <End Role="companies" EntitySet="companies" />
+            <End Role="contactPersons" EntitySet="contactPersons" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="myofferModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -124,6 +140,7 @@
           <Property Name="website" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="location" Relationship="Self.FK__companies__locat__4316F928" FromRole="companies" ToRole="locations" />
           <NavigationProperty Name="tag" Relationship="Self.FK__companies__tagId__4222D4EF" FromRole="companies" ToRole="tags" />
+          <NavigationProperty Name="contactPersons" Relationship="myofferModel.FK__contactPe__compa__48CFD27E" FromRole="company" ToRole="contactPerson" />
         </EntityType>
         <EntityType Name="contactPerson">
           <Key>
@@ -133,6 +150,8 @@
           <Property Name="contactPersonName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="contactNumber" Type="Decimal" Precision="10" Scale="0" />
           <Property Name="isActive" Type="Byte" />
+          <Property Name="companyId" Type="Int32" />
+          <NavigationProperty Name="company" Relationship="myofferModel.FK__contactPe__compa__48CFD27E" FromRole="contactPerson" ToRole="company" />
         </EntityType>
         <EntityType Name="location">
           <Key>
@@ -199,7 +218,23 @@
             <End Role="tags" EntitySet="tags" />
             <End Role="companies" EntitySet="companies" />
           </AssociationSet>
+          <AssociationSet Name="FK__contactPe__compa__48CFD27E" Association="myofferModel.FK__contactPe__compa__48CFD27E">
+            <End Role="company" EntitySet="companies" />
+            <End Role="contactPerson" EntitySet="contactPersons" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK__contactPe__compa__48CFD27E">
+          <End Type="myofferModel.company" Role="company" Multiplicity="0..1" />
+          <End Type="myofferModel.contactPerson" Role="contactPerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="company">
+              <PropertyRef Name="companyId" />
+            </Principal>
+            <Dependent Role="contactPerson">
+              <PropertyRef Name="companyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -230,6 +265,7 @@
           <EntitySetMapping Name="contactPersons">
             <EntityTypeMapping TypeName="myofferModel.contactPerson">
               <MappingFragment StoreEntitySet="contactPersons">
+                <ScalarProperty Name="companyId" ColumnName="companyId" />
                 <ScalarProperty Name="contactPersonId" ColumnName="contactPersonId" />
                 <ScalarProperty Name="contactPersonName" ColumnName="contactPersonName" />
                 <ScalarProperty Name="contactNumber" ColumnName="contactNumber" />

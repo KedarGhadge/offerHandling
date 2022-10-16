@@ -14,6 +14,12 @@ namespace offerDataAccess
     
     public partial class company
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public company()
+        {
+            this.contactPersons = new HashSet<contactPerson>();
+        }
+    
         public int companyId { get; set; }
         public string cname { get; set; }
         public Nullable<byte> rounds { get; set; }
@@ -32,5 +38,7 @@ namespace offerDataAccess
     
         public virtual location location { get; set; }
         public virtual tag tag { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<contactPerson> contactPersons { get; set; }
     }
 }

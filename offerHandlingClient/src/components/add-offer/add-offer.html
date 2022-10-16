@@ -9,7 +9,7 @@
           type="text"
           class="form-control"
           id="cname"
-          data-bind="value: comname"
+          data-bind="value: cname"
         />
         <label for="cname">Company Name</label>
       </div>
@@ -20,12 +20,12 @@
         class="form-control"
         id="loc"
         aria-label=".form-select-lg example"
-        data-bind="value: loct"
+        data-bind="value: locationName"
       >
         <option selected value="0">Choose location....</option>
-        <option value="1">Pune</option>
-        <option value="2">Mumbai</option>
-        <option value="3">Hyderabad</option>
+        <option value="Pune">Pune</option>
+        <option value="Mumbai">Mumbai</option>
+        <option value="Hyderabad">Hyderabad</option>
       </select>
       <label for="loc">Location</label>
     </td>
@@ -36,14 +36,14 @@
         class="form-control"
         id="subloc"
         aria-label=".form-select-lg example"
-        data-bind="value: subloct"
+        data-bind="value: subLocationName"
       >
         <option selected value="0">Select Sub Location</option>
-        <option value="1">Aundh</option>
-        <option value="2">Baner</option>
-        <option value="3">Hinjewadi I</option>
-        <option value="4">Hinjewadi II</option>
-        <option value="5">Hinjewadi III</option>
+        <option value="Aundh">Aundh</option>
+        <option value="Baner">Baner</option>
+        <option value="Hinjewadi I">Hinjewadi I</option>
+        <option value="Hinjewadi II">Hinjewadi II</option>
+        <option value="Hinjewadi III">Hinjewadi III</option>
       </select>
       <label for="subloc">Sub-Location</label>
     </td>
@@ -54,7 +54,7 @@
           type="date"
           class="form-control"
           id="adate"
-          data-bind="value: appDate"
+          data-bind="value: AppliedDate"
         />
         <label for="adate">Applied Date</label>
       </div>
@@ -67,10 +67,10 @@
         class="form-control"
         id="tags"
         required
-        data-bind="value: tagg"
+        data-bind="value: tagName"
       >
         <option selected disabled value="0">Choose...</option>
-        <option value="cancelled">Cancelled</option>
+        <option value="Cancelled">Cancelled</option>
         <option value="Scheduled">Scheduled</option>
         <option value="Interviewed">Interviewed</option>
         <option value="Rejected">Rejected</option>
@@ -83,7 +83,7 @@
           type="date"
           class="form-control"
           id="rdate"
-          data-bind="value: recDate"
+          data-bind="value: responseDate"
         />
         <label for="rdate">Response Date</label>
       </div>
@@ -93,14 +93,26 @@
     <td>
       <select class="form-control" id="result" data-bind="value: results">
         <option selected disabled value="0">Choose...</option>
-        <option value="1">Tough</option>
-        <option value="2">Good</option>
-        <option value="3">Medium</option>
-        <option value="4">Best</option>
+        <option value="Tough">Tough</option>
+        <option value="Good">Good</option>
+        <option value="Medium">Medium</option>
+        <option value="Best">Best</option>
       </select>
       <label for="result">How was interview?</label>
     </td>
-    <td></td>
+    <td>
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="roundd"
+          placeholder="LPA"
+          data-bind="value: rounds"
+        />
+
+        <label for="roundd">Rounds</label>
+      </div>
+    </td>
   </tr>
   <tr>
     <td>
@@ -108,9 +120,9 @@
         <input
           type="text"
           class="form-control"
-          id="minpackage"
+          id="packageMin"
           placeholder="LPA"
-          data-bind="value: minpack"
+          data-bind="value: packageMin"
         />
         <span>LPA</span>
         <label for="minpackage">Package min</label>
@@ -123,7 +135,7 @@
           class="form-control"
           id="maxpackage"
           placeholder="LPA"
-          data-bind="value: maxpack"
+          data-bind="value: packageMax"
         />
         <span>LPA</span>
         <label for="maxpackage">Package max</label>
@@ -136,12 +148,12 @@
         name="tags"
         class="form-control"
         id="scheduled"
-        data-bind="value: scheduler"
+        data-bind="value: Scheduled"
         required
       >
         <option selected disabled value="">Choose...</option>
-        <option value="cancelled">Yes</option>
-        <option value="Scheduled">No</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
       </select>
       <label for="scheduled">Interview Scheduled?</label>
     </td>
@@ -151,7 +163,7 @@
           type="date"
           class="form-control"
           id="idate"
-          data-bind="value: dateinterview"
+          data-bind="value: interviewDAte"
         />
         <label for="idate">Interview Date</label>
       </div>
@@ -164,7 +176,7 @@
           type="text"
           class="form-control"
           id="condi"
-          data-bind="value: conditions"
+          data-bind="value: condition"
         />
 
         <label for="condi">Condition</label>
@@ -176,7 +188,7 @@
           type="text"
           class="form-control"
           id="resp"
-          data-bind="value: respo"
+          data-bind="value: response"
         />
         <label for="resp">Response</label>
       </div>
@@ -189,7 +201,7 @@
           type="text"
           class="form-control"
           id="caller"
-          data-bind="value: callerid"
+          data-bind="value: contactPersonName"
         />
 
         <label for="caller">Caller Name</label>
@@ -201,7 +213,7 @@
           type="text"
           class="form-control"
           id="contact"
-          data-bind="value: callernum"
+          data-bind="value: contactNumber"
         />
 
         <label for="contact">Contact Number</label>
@@ -212,7 +224,7 @@
     <td></td>
   </tr>
 </table>
-<p>First name: <strong data-bind="text: loct">todo</strong></p>
+<p>First name: <strong data-bind="text: locationName">todo</strong></p>
 <button
   type="button"
   class="btn btn-primary"

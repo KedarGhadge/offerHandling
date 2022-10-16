@@ -28,6 +28,7 @@
     <Property Name="contactPersonName" Type="varchar" MaxLength="20" />
     <Property Name="contactNumber" Type="decimal" Precision="10" Scale="0" />
     <Property Name="isActive" Type="tinyint" />
+    <Property Name="companyId" Type="int" />
   </EntityType>
   <EntityType Name="locations">
     <Key>
@@ -78,6 +79,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__contactPe__compa__48CFD27E">
+    <End Role="companies" Type="Self.companies" Multiplicity="0..1" />
+    <End Role="contactPersons" Type="Self.contactPersons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="companies">
+        <PropertyRef Name="companyId" />
+      </Principal>
+      <Dependent Role="contactPersons">
+        <PropertyRef Name="companyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="myofferModelStoreContainer">
     <EntitySet Name="companies" EntityType="Self.companies" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="contactPersons" EntityType="Self.contactPersons" Schema="dbo" store:Type="Tables" />
@@ -91,6 +104,10 @@
     <AssociationSet Name="FK__companies__tagId__4222D4EF" Association="Self.FK__companies__tagId__4222D4EF">
       <End Role="tags" EntitySet="tags" />
       <End Role="companies" EntitySet="companies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__contactPe__compa__48CFD27E" Association="Self.FK__contactPe__compa__48CFD27E">
+      <End Role="companies" EntitySet="companies" />
+      <End Role="contactPersons" EntitySet="contactPersons" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
