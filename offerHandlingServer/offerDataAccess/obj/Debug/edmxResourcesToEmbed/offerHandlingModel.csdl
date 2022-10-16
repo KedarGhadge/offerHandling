@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="myofferModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="company">
+    <Key>
+      <PropertyRef Name="companyId" />
+    </Key>
+    <Property Name="companyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cname" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="rounds" Type="Byte" />
+    <Property Name="tagId" Type="Int32" />
+    <Property Name="AppliedDate" Type="DateTime" Precision="3" />
+    <Property Name="responseDate" Type="DateTime" Precision="3" />
+    <Property Name="packageMin" Type="Byte" />
+    <Property Name="packageMax" Type="Byte" />
+    <Property Name="locationId" Type="Int32" />
+    <Property Name="condition" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="response" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Scheduled" Type="Byte" />
+    <Property Name="interviewDAte" Type="DateTime" Precision="3" />
+    <Property Name="isActive" Type="Byte" />
+    <Property Name="website" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="location" Relationship="Self.FK__companies__locat__4316F928" FromRole="companies" ToRole="locations" />
+    <NavigationProperty Name="tag" Relationship="Self.FK__companies__tagId__4222D4EF" FromRole="companies" ToRole="tags" />
+  </EntityType>
+  <EntityType Name="contactPerson">
+    <Key>
+      <PropertyRef Name="contactPersonId" />
+    </Key>
+    <Property Name="contactPersonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="contactPersonName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="contactNumber" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="isActive" Type="Byte" />
+  </EntityType>
+  <EntityType Name="location">
+    <Key>
+      <PropertyRef Name="locationId" />
+    </Key>
+    <Property Name="locationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="locationName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="subLocationName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="isActive" Type="Byte" />
+    <NavigationProperty Name="companies" Relationship="Self.FK__companies__locat__4316F928" FromRole="locations" ToRole="companies" />
+  </EntityType>
+  <EntityType Name="tag">
+    <Key>
+      <PropertyRef Name="tagId" />
+    </Key>
+    <Property Name="tagId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tagName" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="isActive" Type="Int32" />
+    <NavigationProperty Name="companies" Relationship="Self.FK__companies__tagId__4222D4EF" FromRole="tags" ToRole="companies" />
+  </EntityType>
+  <EntityType Name="technology">
+    <Key>
+      <PropertyRef Name="technologyId" />
+    </Key>
+    <Property Name="technologyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="technologyName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="isActive" Type="Int32" />
+  </EntityType>
+  <Association Name="FK__companies__locat__4316F928">
+    <End Role="locations" Type="Self.location" Multiplicity="0..1" />
+    <End Role="companies" Type="Self.company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="locations">
+        <PropertyRef Name="locationId" />
+      </Principal>
+      <Dependent Role="companies">
+        <PropertyRef Name="locationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__companies__tagId__4222D4EF">
+    <End Role="tags" Type="Self.tag" Multiplicity="0..1" />
+    <End Role="companies" Type="Self.company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tags">
+        <PropertyRef Name="tagId" />
+      </Principal>
+      <Dependent Role="companies">
+        <PropertyRef Name="tagId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="myofferEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="companies" EntityType="Self.company" />
+    <EntitySet Name="contactPersons" EntityType="Self.contactPerson" />
+    <EntitySet Name="locations" EntityType="Self.location" />
+    <EntitySet Name="tags" EntityType="Self.tag" />
+    <EntitySet Name="technologies" EntityType="Self.technology" />
+    <AssociationSet Name="FK__companies__locat__4316F928" Association="Self.FK__companies__locat__4316F928">
+      <End Role="locations" EntitySet="locations" />
+      <End Role="companies" EntitySet="companies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__companies__tagId__4222D4EF" Association="Self.FK__companies__tagId__4222D4EF">
+      <End Role="tags" EntitySet="tags" />
+      <End Role="companies" EntitySet="companies" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

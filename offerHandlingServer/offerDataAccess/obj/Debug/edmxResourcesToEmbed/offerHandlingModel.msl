@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="myofferModelStoreContainer" CdmEntityContainer="myofferEntities">
+    <EntitySetMapping Name="companies">
+      <EntityTypeMapping TypeName="myofferModel.company">
+        <MappingFragment StoreEntitySet="companies">
+          <ScalarProperty Name="companyId" ColumnName="companyId" />
+          <ScalarProperty Name="cname" ColumnName="cname" />
+          <ScalarProperty Name="rounds" ColumnName="rounds" />
+          <ScalarProperty Name="tagId" ColumnName="tagId" />
+          <ScalarProperty Name="AppliedDate" ColumnName="AppliedDate" />
+          <ScalarProperty Name="responseDate" ColumnName="responseDate" />
+          <ScalarProperty Name="packageMin" ColumnName="packageMin" />
+          <ScalarProperty Name="packageMax" ColumnName="packageMax" />
+          <ScalarProperty Name="locationId" ColumnName="locationId" />
+          <ScalarProperty Name="condition" ColumnName="condition" />
+          <ScalarProperty Name="response" ColumnName="response" />
+          <ScalarProperty Name="Scheduled" ColumnName="Scheduled" />
+          <ScalarProperty Name="interviewDAte" ColumnName="interviewDAte" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="website" ColumnName="website" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contactPersons">
+      <EntityTypeMapping TypeName="myofferModel.contactPerson">
+        <MappingFragment StoreEntitySet="contactPersons">
+          <ScalarProperty Name="contactPersonId" ColumnName="contactPersonId" />
+          <ScalarProperty Name="contactPersonName" ColumnName="contactPersonName" />
+          <ScalarProperty Name="contactNumber" ColumnName="contactNumber" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="locations">
+      <EntityTypeMapping TypeName="myofferModel.location">
+        <MappingFragment StoreEntitySet="locations">
+          <ScalarProperty Name="locationId" ColumnName="locationId" />
+          <ScalarProperty Name="locationName" ColumnName="locationName" />
+          <ScalarProperty Name="subLocationName" ColumnName="subLocationName" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tags">
+      <EntityTypeMapping TypeName="myofferModel.tag">
+        <MappingFragment StoreEntitySet="tags">
+          <ScalarProperty Name="tagId" ColumnName="tagId" />
+          <ScalarProperty Name="tagName" ColumnName="tagName" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="technologies">
+      <EntityTypeMapping TypeName="myofferModel.technology">
+        <MappingFragment StoreEntitySet="technologies">
+          <ScalarProperty Name="technologyId" ColumnName="technologyId" />
+          <ScalarProperty Name="technologyName" ColumnName="technologyName" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

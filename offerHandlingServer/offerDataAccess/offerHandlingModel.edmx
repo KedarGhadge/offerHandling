@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="myofferModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="companies">
+          <Key>
+            <PropertyRef Name="companyId" />
+          </Key>
+          <Property Name="companyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cname" Type="varchar" MaxLength="15" />
+          <Property Name="rounds" Type="tinyint" />
+          <Property Name="tagId" Type="int" />
+          <Property Name="AppliedDate" Type="datetime" />
+          <Property Name="responseDate" Type="datetime" />
+          <Property Name="packageMin" Type="tinyint" />
+          <Property Name="packageMax" Type="tinyint" />
+          <Property Name="locationId" Type="int" />
+          <Property Name="condition" Type="varchar" MaxLength="255" />
+          <Property Name="response" Type="varchar" MaxLength="255" />
+          <Property Name="Scheduled" Type="tinyint" />
+          <Property Name="interviewDAte" Type="datetime" />
+          <Property Name="isActive" Type="tinyint" />
+          <Property Name="website" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="contactPersons">
+          <Key>
+            <PropertyRef Name="contactPersonId" />
+          </Key>
+          <Property Name="contactPersonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contactPersonName" Type="varchar" MaxLength="20" />
+          <Property Name="contactNumber" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="isActive" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="locations">
+          <Key>
+            <PropertyRef Name="locationId" />
+          </Key>
+          <Property Name="locationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="locationName" Type="varchar" MaxLength="15" />
+          <Property Name="subLocationName" Type="varchar" MaxLength="25" />
+          <Property Name="isActive" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="tags">
+          <Key>
+            <PropertyRef Name="tagId" />
+          </Key>
+          <Property Name="tagId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tagName" Type="varchar" MaxLength="12" />
+          <Property Name="isActive" Type="int" />
+        </EntityType>
+        <EntityType Name="technologies">
+          <Key>
+            <PropertyRef Name="technologyId" />
+          </Key>
+          <Property Name="technologyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="technologyName" Type="varchar" MaxLength="15" />
+          <Property Name="isActive" Type="int" />
+        </EntityType>
+        <Association Name="FK__companies__locat__4316F928">
+          <End Role="locations" Type="Self.locations" Multiplicity="0..1" />
+          <End Role="companies" Type="Self.companies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="locations">
+              <PropertyRef Name="locationId" />
+            </Principal>
+            <Dependent Role="companies">
+              <PropertyRef Name="locationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__companies__tagId__4222D4EF">
+          <End Role="tags" Type="Self.tags" Multiplicity="0..1" />
+          <End Role="companies" Type="Self.companies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tags">
+              <PropertyRef Name="tagId" />
+            </Principal>
+            <Dependent Role="companies">
+              <PropertyRef Name="tagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="myofferModelStoreContainer">
+          <EntitySet Name="companies" EntityType="Self.companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contactPersons" EntityType="Self.contactPersons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="locations" EntityType="Self.locations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tags" EntityType="Self.tags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="technologies" EntityType="Self.technologies" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__companies__locat__4316F928" Association="Self.FK__companies__locat__4316F928">
+            <End Role="locations" EntitySet="locations" />
+            <End Role="companies" EntitySet="companies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__companies__tagId__4222D4EF" Association="Self.FK__companies__tagId__4222D4EF">
+            <End Role="tags" EntitySet="tags" />
+            <End Role="companies" EntitySet="companies" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="myofferModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="company">
+          <Key>
+            <PropertyRef Name="companyId" />
+          </Key>
+          <Property Name="companyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cname" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="rounds" Type="Byte" />
+          <Property Name="tagId" Type="Int32" />
+          <Property Name="AppliedDate" Type="DateTime" Precision="3" />
+          <Property Name="responseDate" Type="DateTime" Precision="3" />
+          <Property Name="packageMin" Type="Byte" />
+          <Property Name="packageMax" Type="Byte" />
+          <Property Name="locationId" Type="Int32" />
+          <Property Name="condition" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="response" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Scheduled" Type="Byte" />
+          <Property Name="interviewDAte" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Byte" />
+          <Property Name="website" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="location" Relationship="Self.FK__companies__locat__4316F928" FromRole="companies" ToRole="locations" />
+          <NavigationProperty Name="tag" Relationship="Self.FK__companies__tagId__4222D4EF" FromRole="companies" ToRole="tags" />
+        </EntityType>
+        <EntityType Name="contactPerson">
+          <Key>
+            <PropertyRef Name="contactPersonId" />
+          </Key>
+          <Property Name="contactPersonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contactPersonName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="contactNumber" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="isActive" Type="Byte" />
+        </EntityType>
+        <EntityType Name="location">
+          <Key>
+            <PropertyRef Name="locationId" />
+          </Key>
+          <Property Name="locationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="locationName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="subLocationName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Byte" />
+          <NavigationProperty Name="companies" Relationship="Self.FK__companies__locat__4316F928" FromRole="locations" ToRole="companies" />
+        </EntityType>
+        <EntityType Name="tag">
+          <Key>
+            <PropertyRef Name="tagId" />
+          </Key>
+          <Property Name="tagId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tagName" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Int32" />
+          <NavigationProperty Name="companies" Relationship="Self.FK__companies__tagId__4222D4EF" FromRole="tags" ToRole="companies" />
+        </EntityType>
+        <EntityType Name="technology">
+          <Key>
+            <PropertyRef Name="technologyId" />
+          </Key>
+          <Property Name="technologyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="technologyName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Int32" />
+        </EntityType>
+        <Association Name="FK__companies__locat__4316F928">
+          <End Role="locations" Type="Self.location" Multiplicity="0..1" />
+          <End Role="companies" Type="Self.company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="locations">
+              <PropertyRef Name="locationId" />
+            </Principal>
+            <Dependent Role="companies">
+              <PropertyRef Name="locationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__companies__tagId__4222D4EF">
+          <End Role="tags" Type="Self.tag" Multiplicity="0..1" />
+          <End Role="companies" Type="Self.company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tags">
+              <PropertyRef Name="tagId" />
+            </Principal>
+            <Dependent Role="companies">
+              <PropertyRef Name="tagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="myofferEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="companies" EntityType="Self.company" />
+          <EntitySet Name="contactPersons" EntityType="Self.contactPerson" />
+          <EntitySet Name="locations" EntityType="Self.location" />
+          <EntitySet Name="tags" EntityType="Self.tag" />
+          <EntitySet Name="technologies" EntityType="Self.technology" />
+          <AssociationSet Name="FK__companies__locat__4316F928" Association="Self.FK__companies__locat__4316F928">
+            <End Role="locations" EntitySet="locations" />
+            <End Role="companies" EntitySet="companies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__companies__tagId__4222D4EF" Association="Self.FK__companies__tagId__4222D4EF">
+            <End Role="tags" EntitySet="tags" />
+            <End Role="companies" EntitySet="companies" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="myofferModelStoreContainer" CdmEntityContainer="myofferEntities">
+          <EntitySetMapping Name="companies">
+            <EntityTypeMapping TypeName="myofferModel.company">
+              <MappingFragment StoreEntitySet="companies">
+                <ScalarProperty Name="companyId" ColumnName="companyId" />
+                <ScalarProperty Name="cname" ColumnName="cname" />
+                <ScalarProperty Name="rounds" ColumnName="rounds" />
+                <ScalarProperty Name="tagId" ColumnName="tagId" />
+                <ScalarProperty Name="AppliedDate" ColumnName="AppliedDate" />
+                <ScalarProperty Name="responseDate" ColumnName="responseDate" />
+                <ScalarProperty Name="packageMin" ColumnName="packageMin" />
+                <ScalarProperty Name="packageMax" ColumnName="packageMax" />
+                <ScalarProperty Name="locationId" ColumnName="locationId" />
+                <ScalarProperty Name="condition" ColumnName="condition" />
+                <ScalarProperty Name="response" ColumnName="response" />
+                <ScalarProperty Name="Scheduled" ColumnName="Scheduled" />
+                <ScalarProperty Name="interviewDAte" ColumnName="interviewDAte" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="website" ColumnName="website" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contactPersons">
+            <EntityTypeMapping TypeName="myofferModel.contactPerson">
+              <MappingFragment StoreEntitySet="contactPersons">
+                <ScalarProperty Name="contactPersonId" ColumnName="contactPersonId" />
+                <ScalarProperty Name="contactPersonName" ColumnName="contactPersonName" />
+                <ScalarProperty Name="contactNumber" ColumnName="contactNumber" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="locations">
+            <EntityTypeMapping TypeName="myofferModel.location">
+              <MappingFragment StoreEntitySet="locations">
+                <ScalarProperty Name="locationId" ColumnName="locationId" />
+                <ScalarProperty Name="locationName" ColumnName="locationName" />
+                <ScalarProperty Name="subLocationName" ColumnName="subLocationName" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tags">
+            <EntityTypeMapping TypeName="myofferModel.tag">
+              <MappingFragment StoreEntitySet="tags">
+                <ScalarProperty Name="tagId" ColumnName="tagId" />
+                <ScalarProperty Name="tagName" ColumnName="tagName" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="technologies">
+            <EntityTypeMapping TypeName="myofferModel.technology">
+              <MappingFragment StoreEntitySet="technologies">
+                <ScalarProperty Name="technologyId" ColumnName="technologyId" />
+                <ScalarProperty Name="technologyName" ColumnName="technologyName" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

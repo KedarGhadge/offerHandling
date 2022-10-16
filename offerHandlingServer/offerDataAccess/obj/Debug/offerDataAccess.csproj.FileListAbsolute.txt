@@ -1,0 +1,10 @@
+E:\Git\OfferHandling\offerHandlingServer\offerDataAccess\bin\Debug\offerDataAccess.dll.config
+E:\Git\OfferHandling\offerHandlingServer\offerDataAccess\bin\Debug\offerDataAccess.dll
+E:\Git\OfferHandling\offerHandlingServer\offerDataAccess\bin\Debug\offerDataAccess.pdb
+E:\Git\OfferHandling\offerHandlingServer\offerDataAccess\bin\Debug\EntityFramework.dll
+E:\Git\OfferHandling\offerHandlingServer\offerDataAccess\bin\Debug\EntityFramework.SqlServer.dll
+E:\Git\OfferHandling\offerHandlingServer\offerDataAccess\bin\Debug\EntityFramework.xml
+E:\Git\OfferHandling\offerHandlingServer\offerDataAccess\bin\Debug\EntityFramework.SqlServer.xml
+E:\Git\OfferHandling\offerHandlingServer\offerDataAccess\obj\Debug\offerDataAccess.csprojResolveAssemblyReference.cache
+E:\Git\OfferHandling\offerHandlingServer\offerDataAccess\obj\Debug\offerDataAccess.dll
+E:\Git\OfferHandling\offerHandlingServer\offerDataAccess\obj\Debug\offerDataAccess.pdb

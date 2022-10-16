@@ -1,0 +1,222 @@
+<h2>Add Offer</h2>
+
+<p data-bind="text: message"></p>
+<table class="table">
+  <tr>
+    <td>
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="cname"
+          data-bind="value: comname"
+        />
+        <label for="cname">Company Name</label>
+      </div>
+    </td>
+
+    <td>
+      <select
+        class="form-control"
+        id="loc"
+        aria-label=".form-select-lg example"
+        data-bind="value: loct"
+      >
+        <option selected value="0">Choose location....</option>
+        <option value="1">Pune</option>
+        <option value="2">Mumbai</option>
+        <option value="3">Hyderabad</option>
+      </select>
+      <label for="loc">Location</label>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <select
+        class="form-control"
+        id="subloc"
+        aria-label=".form-select-lg example"
+        data-bind="value: subloct"
+      >
+        <option selected value="0">Select Sub Location</option>
+        <option value="1">Aundh</option>
+        <option value="2">Baner</option>
+        <option value="3">Hinjewadi I</option>
+        <option value="4">Hinjewadi II</option>
+        <option value="5">Hinjewadi III</option>
+      </select>
+      <label for="subloc">Sub-Location</label>
+    </td>
+
+    <td>
+      <div class="form-floating mb-3">
+        <input
+          type="date"
+          class="form-control"
+          id="adate"
+          data-bind="value: appDate"
+        />
+        <label for="adate">Applied Date</label>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <select
+        name="tags"
+        class="form-control"
+        id="tags"
+        required
+        data-bind="value: tagg"
+      >
+        <option selected disabled value="0">Choose...</option>
+        <option value="cancelled">Cancelled</option>
+        <option value="Scheduled">Scheduled</option>
+        <option value="Interviewed">Interviewed</option>
+        <option value="Rejected">Rejected</option>
+      </select>
+      <label for="tags">Tags</label>
+    </td>
+    <td>
+      <div class="form-floating mb-3">
+        <input
+          type="date"
+          class="form-control"
+          id="rdate"
+          data-bind="value: recDate"
+        />
+        <label for="rdate">Response Date</label>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <select class="form-control" id="result" data-bind="value: results">
+        <option selected disabled value="0">Choose...</option>
+        <option value="1">Tough</option>
+        <option value="2">Good</option>
+        <option value="3">Medium</option>
+        <option value="4">Best</option>
+      </select>
+      <label for="result">How was interview?</label>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="minpackage"
+          placeholder="LPA"
+          data-bind="value: minpack"
+        />
+        <span>LPA</span>
+        <label for="minpackage">Package min</label>
+      </div>
+    </td>
+    <td>
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="maxpackage"
+          placeholder="LPA"
+          data-bind="value: maxpack"
+        />
+        <span>LPA</span>
+        <label for="maxpackage">Package max</label>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <select
+        name="tags"
+        class="form-control"
+        id="scheduled"
+        data-bind="value: scheduler"
+        required
+      >
+        <option selected disabled value="">Choose...</option>
+        <option value="cancelled">Yes</option>
+        <option value="Scheduled">No</option>
+      </select>
+      <label for="scheduled">Interview Scheduled?</label>
+    </td>
+    <td>
+      <div class="form-floating mb-3">
+        <input
+          type="date"
+          class="form-control"
+          id="idate"
+          data-bind="value: dateinterview"
+        />
+        <label for="idate">Interview Date</label>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="condi"
+          data-bind="value: conditions"
+        />
+
+        <label for="condi">Condition</label>
+      </div>
+    </td>
+    <td>
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="resp"
+          data-bind="value: respo"
+        />
+        <label for="resp">Response</label>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="caller"
+          data-bind="value: callerid"
+        />
+
+        <label for="caller">Caller Name</label>
+      </div>
+    </td>
+    <td>
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="contact"
+          data-bind="value: callernum"
+        />
+
+        <label for="contact">Contact Number</label>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
+</table>
+<p>First name: <strong data-bind="text: loct">todo</strong></p>
+<button
+  type="button"
+  class="btn btn-primary"
+  data-bind="click: registerCompany"
+>
+  Add
+</button>

@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="myofferModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="companies">
+    <Key>
+      <PropertyRef Name="companyId" />
+    </Key>
+    <Property Name="companyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cname" Type="varchar" MaxLength="15" />
+    <Property Name="rounds" Type="tinyint" />
+    <Property Name="tagId" Type="int" />
+    <Property Name="AppliedDate" Type="datetime" />
+    <Property Name="responseDate" Type="datetime" />
+    <Property Name="packageMin" Type="tinyint" />
+    <Property Name="packageMax" Type="tinyint" />
+    <Property Name="locationId" Type="int" />
+    <Property Name="condition" Type="varchar" MaxLength="255" />
+    <Property Name="response" Type="varchar" MaxLength="255" />
+    <Property Name="Scheduled" Type="tinyint" />
+    <Property Name="interviewDAte" Type="datetime" />
+    <Property Name="isActive" Type="tinyint" />
+    <Property Name="website" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="contactPersons">
+    <Key>
+      <PropertyRef Name="contactPersonId" />
+    </Key>
+    <Property Name="contactPersonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="contactPersonName" Type="varchar" MaxLength="20" />
+    <Property Name="contactNumber" Type="decimal" Precision="10" Scale="0" />
+    <Property Name="isActive" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="locations">
+    <Key>
+      <PropertyRef Name="locationId" />
+    </Key>
+    <Property Name="locationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="locationName" Type="varchar" MaxLength="15" />
+    <Property Name="subLocationName" Type="varchar" MaxLength="25" />
+    <Property Name="isActive" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="tags">
+    <Key>
+      <PropertyRef Name="tagId" />
+    </Key>
+    <Property Name="tagId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tagName" Type="varchar" MaxLength="12" />
+    <Property Name="isActive" Type="int" />
+  </EntityType>
+  <EntityType Name="technologies">
+    <Key>
+      <PropertyRef Name="technologyId" />
+    </Key>
+    <Property Name="technologyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="technologyName" Type="varchar" MaxLength="15" />
+    <Property Name="isActive" Type="int" />
+  </EntityType>
+  <Association Name="FK__companies__locat__4316F928">
+    <End Role="locations" Type="Self.locations" Multiplicity="0..1" />
+    <End Role="companies" Type="Self.companies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="locations">
+        <PropertyRef Name="locationId" />
+      </Principal>
+      <Dependent Role="companies">
+        <PropertyRef Name="locationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__companies__tagId__4222D4EF">
+    <End Role="tags" Type="Self.tags" Multiplicity="0..1" />
+    <End Role="companies" Type="Self.companies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tags">
+        <PropertyRef Name="tagId" />
+      </Principal>
+      <Dependent Role="companies">
+        <PropertyRef Name="tagId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="myofferModelStoreContainer">
+    <EntitySet Name="companies" EntityType="Self.companies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="contactPersons" EntityType="Self.contactPersons" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="locations" EntityType="Self.locations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tags" EntityType="Self.tags" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="technologies" EntityType="Self.technologies" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__companies__locat__4316F928" Association="Self.FK__companies__locat__4316F928">
+      <End Role="locations" EntitySet="locations" />
+      <End Role="companies" EntitySet="companies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__companies__tagId__4222D4EF" Association="Self.FK__companies__tagId__4222D4EF">
+      <End Role="tags" EntitySet="tags" />
+      <End Role="companies" EntitySet="companies" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
